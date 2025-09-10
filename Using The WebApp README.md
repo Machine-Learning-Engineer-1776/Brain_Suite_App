@@ -25,6 +25,12 @@ Visit the link below to open the Brain Tumor Classifier web app.
 
 </div>
 
+<div align="center">
+  
+![Brain Tumor Classification Blank Screen](https://github.com/user-attachments/assets/f63d8669-4789-4638-b876-28f500fc544d)
+
+</div>
+
 + **Upload an Image:** Use the drag-and-drop interface to upload a brain MRI image from the Test Images folder of the Brain Tumor MRI Dataset.
 
   +  Test Images for you to use can be found here.
