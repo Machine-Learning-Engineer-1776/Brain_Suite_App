@@ -11,7 +11,7 @@ Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier 
 
 + **Upload an Image:** Use the drag-and-drop interface to upload a brain MRI image from the Test Images folder of the Brain Tumor MRI Dataset.
 
-+  Test Images for you to use can be found here.   @@@@@@@@@@@@@
++  Test Images for you to use can be found here.   
 
 +  Thousands of more images available at https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset.  Found in the Testing folder.
 
