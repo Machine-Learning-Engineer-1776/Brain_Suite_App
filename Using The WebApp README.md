@@ -45,7 +45,7 @@ Visit the link below to open the Brain Tumor Classifier web app.
 
 </div>
 
-+ **Upload Even More Images :-)**
++ **Upload Even More Images   :-)**
   +  Thousands of more images available at the link below
   +  Found in the Testing folder.
 
