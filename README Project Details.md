@@ -1,4 +1,4 @@
-**<H1>Brain Tumor Classifier Web App</H1>**
+**<H1>Brain Tumor Classifier Web App:</H1>**
 
 <div align="center">
   
