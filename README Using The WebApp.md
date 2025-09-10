@@ -37,7 +37,7 @@ Visit the link below to open the Brain Tumor Classifier web app.
 
 + **Upload an Image:** Use the drag-and-drop interface to upload a brain MRI image from the Test Images folder of the Brain Tumor MRI Dataset.
 
-  +  Test Images for you to use can be found here.
+  +  Test Images for you to use can be found here.  **The WebApp Will ask you to upload an image, so you'll need to download an image**
 
 <div align="center">
     
