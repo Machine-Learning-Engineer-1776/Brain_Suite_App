@@ -1,5 +1,5 @@
 **<h1>Brain Tumor Classifier Web App:</h1>**
-**Using the Web App**
+**<font color=blue>Using the Web App**</font>
 
 
 
