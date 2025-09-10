@@ -19,7 +19,10 @@ Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier 
 
 </div>
 
-+  Thousands of more images available at https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset.  Found in the Testing folder.
++  Thousands of more images available at [Kaggle Dataset]
++    Found in the Testing folder.
+  (https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset.)
+
 
 
 + **View Results:**
