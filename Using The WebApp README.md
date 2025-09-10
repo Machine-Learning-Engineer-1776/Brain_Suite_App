@@ -1,5 +1,7 @@
 **<h1>Brain Tumor Classifier Web App:**
-  **'Using the Web App'</h1>**
+  
+  
+  **Using the Web App</h1>**
 
 
 
