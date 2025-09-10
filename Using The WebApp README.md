@@ -1,4 +1,8 @@
+<div align="center">
+  
 **<h1>Brain Tumor Classifier Web App:**
+
+</div>
 
 <div align="center">
 
