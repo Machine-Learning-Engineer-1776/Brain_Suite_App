@@ -70,6 +70,13 @@ The Testing folder contains 1311 images: 405 No Tumor, 906 Tumor (300 glioma, 30
 The model achieves 84 percent accuracy and 0.41 loss, with a confusion matrix of 322 true No Tumor, 83 false Tumor, 128 false No Tumor, 778 true Tumor. Expect 80 percent of No Tumor images and 86 percent of Tumor images to be correctly classified.
 
 
+<div align="center">
+
+![Brain Tumor Model Evaluation](https://github.com/user-attachments/assets/c349672f-341e-449a-a159-aa67199b5305)
+
+</div>
+
+
 + **Limitations:**
 
 The model is optimized for brain MRI images. Non-MRI images (e.g., photos of objects) may yield less reliable results. Confidence scores reflect the model’s prediction strength, not medical certainty.
