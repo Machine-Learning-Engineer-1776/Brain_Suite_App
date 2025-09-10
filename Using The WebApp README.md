@@ -1,6 +1,6 @@
 <div align="center">
   
-**<h1>Brain Tumor Classifier Web App:**
+**<h1>Brain Tumor Classifier Web App:</h1>**
 
 </div>
 
@@ -10,7 +10,7 @@
 
 </div>
   
-  **Using the Web App</h1>**
+  **<h1>Using the Web App</h1>**
 
 
 
