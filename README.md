@@ -31,7 +31,11 @@ This project builds a deep learning model to classify brain MRI images as Tumor 
 
 + Platform: Flask with drag-and-drop interface
 + Functionality: Upload MRI images, get Tumor or No Tumor predictions with confidence scores
-+ Access: [Brain Tumor Classification Web App](https://40ba98880c7b.ngrok-free.app/)
-  + Don't Forget to Read the Instructions! [Read Me](https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/blob/main/README%20Using%20The%20WebApp.md)
++ Access:
+
+  [Brain Tumor Classification Web App](https://40ba98880c7b.ngrok-free.app/)
+  + Don't Forget to Read the Instructions!
+
+    [Read Me](https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/blob/main/README%20Using%20The%20WebApp.md)
   
 + Preprocessing: Images resized to 224x224, RGB, rescaled by 1/255; prediction threshold at 0.5
