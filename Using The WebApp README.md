@@ -1,7 +1,10 @@
 **<h1>Brain Tumor Classifier Web App:**
 
+<div align="center">
+
   ![DaTumorBrains](https://github.com/user-attachments/assets/1264e884-767e-481b-aab7-7ead851c1152)
 
+</div>
   
   **Using the Web App</h1>**
 
