@@ -34,6 +34,12 @@ Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier 
 + **View Results:**
 The app displays Tumor Detected or No Tumor with a confidence score (e.g., Confidence: 88.61%). Results are based on a ResNet50 model with 84 percent accuracy, 80 percent recall for No Tumor, and 86 percent recall for Tumor.
 
+<div align="center">
+
+![results](https://github.com/user-attachments/assets/2b473de0-87ac-43f2-99fb-b0c1004a17f6)
+
+
+</div>
 
 + **Test with Other Images:** You can upload any image (JPG or PNG), but the model is trained on brain MRIs. Non-MRI images may produce unpredictable results, though the model should output varied confidence scores.
 
