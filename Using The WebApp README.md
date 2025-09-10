@@ -13,7 +13,7 @@ Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier 
 
 +  Test Images for you to use can be found here.
   
-  [Test Images]https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/tree/main/Test%20Images/Images%20For%20Testing
+  [Test Images](https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/tree/main/Test%20Images/Images%20For%20Testing)
 
 
 +  Thousands of more images available at https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset.  Found in the Testing folder.
