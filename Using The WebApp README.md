@@ -57,10 +57,6 @@ The app displays Tumor Detected or No Tumor with a confidence score (e.g., Confi
 
 </div>
 
-+ **Test with Other Images:** You can upload any image (JPG or PNG), but the model is trained on brain MRIs. Non-MRI images may produce unpredictable results, though the model should output varied confidence scores.
-
-+ **What You Need to Know**
-
 + **Dataset:**
 
 The Testing folder contains 1311 images: 405 No Tumor, 906 Tumor (300 glioma, 306 meningioma, 300 pituitary). Images are preprocessed to 224x224 pixels, RGB, rescaled by 1/255.
