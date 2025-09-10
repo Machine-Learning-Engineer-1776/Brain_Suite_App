@@ -39,7 +39,8 @@ This project builds a deep learning model to classify brain MRI images as Tumor 
 </div>
   + Don't Forget to Read the Instructions!
 
-    [Read Me](https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/blob/main/README%20Using%20The%20WebApp.md/)
+    [Read Me](https://github.com/Machine-Learning-Engineer-1776/Brain_Tumor_Classifier_For_Web_App/blob/main/README%20Using%20The%20WebApp.md
+    
   
 
 + Preprocessing: Images resized to 224x224, RGB, rescaled by 1/255; prediction threshold at 0.5
