@@ -9,7 +9,11 @@ This guide explains how to use the Brain Tumor Classifier web app, a deep learni
 + **Access the App:**
 Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier web app.
 
-+ **Upload an Image:** Use the drag-and-drop interface to upload a brain MRI image from the Test Images folder of the Brain Tumor MRI Dataset, available at https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset. Recommended test images include Te-no_0010.jpg for No Tumor or Te-pi_0010.jpg for Tumor, found in the Testing folder.
++ **Upload an Image:** Use the drag-and-drop interface to upload a brain MRI image from the Test Images folder of the Brain Tumor MRI Dataset.
+
++  Test Images for you to use can be found here.   @@@@@@@@@@@@@
+
++  Thousands of more images available at https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset.  Found in the Testing folder.
 
 
 + **View Results:**
