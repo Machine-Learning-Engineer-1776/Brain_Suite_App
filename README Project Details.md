@@ -1,5 +1,12 @@
 **<H1>Brain Tumor Classifier Web App</H1>**
 
+<div align="center">
+  
+![DaBrain](https://github.com/user-attachments/assets/52c5e786-9fcd-4da7-a0bf-121ae4dcab15)
+
+</div>
+
+
 This project builds a deep learning model to classify brain MRI images as Tumor or No Tumor, deployed as a Flask web app for real-time predictions via a drag-and-drop interface. Using a ResNet50-based model and the Brain Tumor MRI Dataset from Kaggle, it showcases expertise in machine learning, computer vision, and web deployment.
 
 **Key Achievements**
