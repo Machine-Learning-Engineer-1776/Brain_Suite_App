@@ -38,7 +38,7 @@ This project builds a deep learning model to classify brain MRI images as Tumor 
 
 </div>
 
-  + Don't Forget to Read the Instructions!
+   !  Don't Forget to Read the Instructions  !
 
 <div align="center">
   
