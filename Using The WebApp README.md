@@ -19,7 +19,7 @@ Visit [https://40ba98880c7b.ngrok-free.app/] to open the Brain Tumor Classifier 
 
 </div>
 
-+""Upload Even More Images :-)**
++ **Upload Even More Images :-)**
   +  Thousands of more images available at the link below
   +  Found in the Testing folder.
 
