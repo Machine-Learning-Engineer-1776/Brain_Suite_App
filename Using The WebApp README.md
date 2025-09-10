@@ -1,7 +1,7 @@
 **<h1>Brain Tumor Classifier Web App:</h1>**
 
 
-<font color="blue"><h1>Using the Web App</h1></font>
+'Using the Web App'
 
 This guide explains how to use the Brain Tumor Classifier web app, a deep learning tool that classifies brain MRI images as Tumor or No Tumor. Built with a ResNet50-based model and deployed using Flask, the app allows users to upload MRI images via a drag-and-drop interface and receive real-time predictions with confidence scores. The app leverages the Brain Tumor MRI Dataset from Kaggle for accurate medical classification.
 
