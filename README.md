@@ -54,6 +54,6 @@ This project builds a deep learning model to classify brain MRI images as Tumor 
 
 + Preprocessing: Images resized to 224x224, RGB, rescaled by 1/255; prediction threshold at 0.5
 
-+ **Limitations:**
+**Limitations:**
 
 The model is optimized for brain MRI images. Non-MRI images (e.g., photos of objects) may yield less reliable results. Confidence scores reflect the model’s prediction strength, not medical certainty.
