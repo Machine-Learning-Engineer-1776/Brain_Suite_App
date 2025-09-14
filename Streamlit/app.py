@@ -1,20 +1,16 @@
 import streamlit as st
 import numpy as np
-import torch
-import torchvision.models as models
+import tensorflow as tf
 from PIL import Image
 import matplotlib.pyplot as plt
 
 st.title("Brain Tumor Classifier - CNN")
-# Load model (adjust path and architecture as per Brain_Tumor_Classifier.ipynb)
-model = models.resnet18(pretrained=False)
-model.fc = torch.nn.Linear(model.fc.in_features, 2)  # Binary: tumor/no tumor
+# Load model
 try:
-    model.load_state_dict(torch.load('../Models/model.pth', map_location=torch.device('cpu')))
+    model = tf.keras.models.load_model('../Models/model_retrained.h5')
 except FileNotFoundError:
-    st.error("Model weights not found. Ensure Brain_Tumor_Classifier.ipynb saves weights as Models/model.pth")
+    st.error("Model weights not found at Models/model_retrained.h5")
     st.stop()
-model.eval()
 
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
 if uploaded_files:
@@ -23,13 +19,12 @@ if uploaded_files:
         if uploaded_file.name.endswith('.npy'):
             img = np.load(uploaded_file)
         else:
-            img = np.array(Image.open(uploaded_file).resize((224, 224)))  # Adjust size for your CNN
-        img_tensor = torch.from_numpy(img).float().permute(2, 0, 1).unsqueeze(0) / 255.0
+            img = np.array(Image.open(uploaded_file).resize((224, 224)))  # ResNet50 input size
+        img_array = img.astype('float32') / 255.0
+        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
         # Predict
-        with torch.no_grad():
-            pred = model(img_tensor)
-            prob = torch.softmax(pred, dim=1)[0][1].item()  # Tumor probability
-            label = "Tumor" if prob > 0.5 else "No Tumor"
+        prob = model.predict(img_array)[0][0]
+        label = "Tumor" if prob > 0.5 else "No Tumor"
         # Display
         st.write(f"Image: {uploaded_file.name}, Tumor Probability: {prob:.3f}, Prediction: {label}")
         fig, ax = plt.subplots()
