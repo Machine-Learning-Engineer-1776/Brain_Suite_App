@@ -37,8 +37,6 @@ def grad_cam(model, img_array, layer_name):
     cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]))
     # Enhance contrast
     cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-10)
-    cam = np.uint8(255 * cam)
-    cam = cv2.medianBlur(cam, 5)  # Smooth noise
     return cam
 
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
@@ -69,24 +67,18 @@ if uploaded_files:
         ax.imshow(img, cmap='gray')
         ax.set_title(f"Prediction: {label}")
         st.pyplot(fig)
-        # Grad-CAM and circle if not No Tumor
+        # Grad-CAM and arrow if not No Tumor
         if label != "No Tumor":
             layer_name = 'conv5_block3_out'  # ResNet50 last conv layer
             try:
                 cam = grad_cam(model, img_array, layer_name)
-                heatmap = cv2.applyColorMap(cam, cv2.COLORMAP_JET)
+                heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
                 superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
-                gray = np.uint8(cam)
-                _, thresh = cv2.threshold(gray, 0.01, 255, 0)  # Ultra-low threshold
-                kernel = np.ones((5,5), np.uint8)  # Dilation to connect regions
-                thresh = cv2.dilate(thresh, kernel, iterations=1)
-                contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                if contours:
-                    (x, y), r = cv2.minEnclosingCircle(contours[0])
-                    r = max(r, 20)  # Larger circle
-                    cv2.circle(superimposed, (int(x), int(y)), int(r), (0, 255, 0), 2)
-                    st.image(superimposed, caption=f"{label} Circled (Confidence: {max_prob:.2%})", use_column_width=True)
-                else:
-                    st.write("No clear tumor region detected. Try a higher contrast image.")
+                # Find max activation point for arrow
+                y, x = np.unravel_index(np.argmax(cam), cam.shape)
+                arrow_start = (int(x), int(y))
+                arrow_end = (int(x + 20), int(y - 20))  # Point upward-right
+                cv2.arrowedLine(superimposed, arrow_start, arrow_end, (0, 255, 0), 2, tipLength=0.3)
+                st.image(superimposed, caption=f"{label} Indicated (Confidence: {max_prob:.2%})", use_column_width=True)
             except Exception as e:
                 st.error(f"Grad-CAM failed: {str(e)}")
