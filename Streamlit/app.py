@@ -1,9 +1,9 @@
 import streamlit as st
-    import numpy as np
-    import tensorflow as tf
-    from PIL import Image
-    import matplotlib.pyplot as plt
-    import cv2
+import numpy as np
+import tensorflow as tf
+from PIL import Image
+import matplotlib.pyplot as plt
+import cv2
 
     st.title("Brain Tumor Classifier - CNN")
     st.write("Predicts Tumor/No Tumor, mapping glioma/meningioma/pituitary to Tumor, like the original Flask app.")
