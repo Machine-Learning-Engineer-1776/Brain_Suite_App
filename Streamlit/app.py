@@ -1,9 +1,9 @@
 import streamlit as st
-import numpy as np
-import tensorflow as tf
-from PIL import Image
-import matplotlib.pyplot as plt
-import cv2
+    import numpy as np
+    import tensorflow as tf
+    from PIL import Image
+    import matplotlib.pyplot as plt
+    import cv2
 
     st.title("Brain Tumor Classifier - CNN")
     st.write("Predicts Tumor/No Tumor, mapping glioma/meningioma/pituitary to Tumor, like the original Flask app.")
@@ -65,14 +65,14 @@ import cv2
                     heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
                     superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
                     gray = np.uint8(cam * 255)
-                    _, thresh = cv2.threshold(gray, 30, 255, 0)  # Lowered threshold
+                    _, thresh = cv2.threshold(gray, 20, 255, 0)  # Lowered threshold for sensitivity
                     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                     if contours:
                         (x, y), r = cv2.minEnclosingCircle(contours[0])
-                        r = max(r, 15)  # Ensure visible circle
+                        r = max(r, 20)  # Larger circle for visibility
                         cv2.circle(superimposed, (int(x), int(y)), int(r), (0, 255, 0), 2)
                         st.image(superimposed, caption=f"Tumor Circled (Confidence: {confidence:.2%})", use_column_width=True)
                     else:
-                        st.write("No clear tumor region detected for circling. Check image contrast.")
+                        st.write("No clear tumor region detected. Try adjusting image contrast or threshold.")
                 except Exception as e:
                     st.error(f"Grad-CAM failed: {str(e)}")
