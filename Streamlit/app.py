@@ -73,7 +73,7 @@ if uploaded_files:
                 heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
                 superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
                 gray = np.uint8(cam * 255)
-                _, thresh = cv2.threshold(gray, 2, 255, 0)  # Low threshold
+                _, thresh = cv2.threshold(gray, 0.5, 255, 0)  # Lowered threshold
                 contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 if contours:
                     (x, y), r = cv2.minEnclosingCircle(contours[0])
@@ -81,6 +81,6 @@ if uploaded_files:
                     cv2.circle(superimposed, (int(x), int(y)), int(r), (0, 255, 0), 2)
                     st.image(superimposed, caption=f"{label} Circled (Confidence: {max_prob:.2%})", use_column_width=True)
                 else:
-                    st.write("No clear tumor region detected. Check image contrast.")
+                    st.write("No clear tumor region detected. Try a higher contrast image.")
             except Exception as e:
                 st.error(f"Grad-CAM failed: {str(e)}")
