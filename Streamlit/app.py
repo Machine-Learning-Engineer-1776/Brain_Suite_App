@@ -35,6 +35,10 @@ def grad_cam(model, img_array, layer_name):
     cam = np.maximum(cam, 0)
     cam = cam / (np.max(cam) + 1e-10)  # Avoid division by zero
     cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]))
+    # Enhance contrast
+    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-10)
+    cam = np.uint8(255 * cam)
+    cam = cv2.medianBlur(cam, 5)  # Smooth noise
     return cam
 
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
@@ -70,10 +74,12 @@ if uploaded_files:
             layer_name = 'conv5_block3_out'  # ResNet50 last conv layer
             try:
                 cam = grad_cam(model, img_array, layer_name)
-                heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+                heatmap = cv2.applyColorMap(cam, cv2.COLORMAP_JET)
                 superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
-                gray = np.uint8(cam * 255)
+                gray = np.uint8(cam)
                 _, thresh = cv2.threshold(gray, 0.01, 255, 0)  # Ultra-low threshold
+                kernel = np.ones((5,5), np.uint8)  # Dilation to connect regions
+                thresh = cv2.dilate(thresh, kernel, iterations=1)
                 contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 if contours:
                     (x, y), r = cv2.minEnclosingCircle(contours[0])
