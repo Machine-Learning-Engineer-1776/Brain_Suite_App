@@ -23,7 +23,7 @@ def grad_cam(model, img_array, layer_name):
     )
     with tf.GradientTape() as tape:
         conv_outputs, predictions = grad_model(img_array)
-        class_idx = tf.argmax(predictions[0], axis=-1).numpy().item()  # Scalar index
+        class_idx = tf.argmax(predictions[0], axis=-1).numpy().item()
         loss = predictions[0][class_idx]
     grads = tape.gradient(loss, conv_outputs)
     conv_outputs = conv_outputs[0]
@@ -33,10 +33,8 @@ def grad_cam(model, img_array, layer_name):
     for index, w in enumerate(weights):
         cam += w * conv_outputs[:, :, index]
     cam = np.maximum(cam, 0)
-    cam = cam / (np.max(cam) + 1e-10)  # Avoid division by zero
+    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-10)  # Normalize properly
     cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]))
-    # Enhance contrast
-    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-10)
     return cam
 
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
@@ -77,7 +75,7 @@ if uploaded_files:
                 # Find max activation point for arrow
                 y, x = np.unravel_index(np.argmax(cam), cam.shape)
                 arrow_start = (int(x), int(y))
-                arrow_end = (int(x + 20), int(y - 20))  # Point upward-right
+                arrow_end = (int(x + 30), int(y - 30))  # Longer arrow, upward-right
                 cv2.arrowedLine(superimposed, arrow_start, arrow_end, (0, 255, 0), 2, tipLength=0.3)
                 st.image(superimposed, caption=f"{label} Indicated (Confidence: {max_prob:.2%})", use_column_width=True)
             except Exception as e:
