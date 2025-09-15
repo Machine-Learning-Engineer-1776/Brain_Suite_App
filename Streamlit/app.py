@@ -33,8 +33,9 @@ def grad_cam(model, img_array, layer_name):
     for index, w in enumerate(weights):
         cam += w * conv_outputs[:, :, index]
     cam = np.maximum(cam, 0)
-    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-10)  # Normalize properly
-    cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]))
+    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-8)  # Tight normalization
+    cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]), interpolation=cv2.INTER_LINEAR)
+    cam = np.clip(cam, 0, 1)  # Clip to avoid overflow
     return cam
 
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
@@ -71,7 +72,7 @@ if uploaded_files:
             try:
                 cam = grad_cam(model, img_array, layer_name)
                 heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
-                superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
+                superimposed = cv2.addWeighted(np.uint8(img * 255), 0.7, heatmap, 0.3, 0)  # Adjusted weights
                 # Find max activation point for arrow
                 y, x = np.unravel_index(np.argmax(cam), cam.shape)
                 arrow_start = (int(x), int(y))
