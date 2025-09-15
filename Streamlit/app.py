@@ -23,8 +23,8 @@ def grad_cam(model, img_array, layer_name):
     )
     with tf.GradientTape() as tape:
         conv_outputs, predictions = grad_model(img_array)
-        class_idx = tf.argmax(predictions[0])
-        loss = predictions[:, class_idx][0]
+        class_idx = tf.argmax(predictions[0]).numpy()  # Get index of max class
+        loss = predictions[0][class_idx]  # Scalar value for the max class
     grads = tape.gradient(loss, conv_outputs)
     conv_outputs = conv_outputs[0]
     grads = grads[0]
@@ -73,7 +73,7 @@ if uploaded_files:
                 heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
                 superimposed = cv2.addWeighted(np.uint8(img * 255), 0.6, heatmap, 0.4, 0)
                 gray = np.uint8(cam * 255)
-                _, thresh = cv2.threshold(gray, 2, 255, 0)  # Lowered threshold
+                _, thresh = cv2.threshold(gray, 2, 255, 0)  # Low threshold
                 contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
                 if contours:
                     (x, y), r = cv2.minEnclosingCircle(contours[0])
