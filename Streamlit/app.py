@@ -23,8 +23,10 @@ def grad_cam(model, img_array, layer_name):
     )
     with tf.GradientTape() as tape:
         conv_outputs, predictions = grad_model(img_array)
-        class_idx = tf.argmax(predictions[0]).numpy()
-        loss = predictions[0][class_idx]  # Scalar loss
+        st.write(f"Predictions shape: {predictions.shape}")  # Debug
+        class_idx = tf.argmax(predictions[0], axis=-1).numpy()  # Scalar index
+        st.write(f"Class index: {class_idx}")  # Debug
+        loss = predictions[0, class_idx]  # Scalar loss
     grads = tape.gradient(loss, conv_outputs)
     conv_outputs = conv_outputs[0]
     grads = grads[0]
