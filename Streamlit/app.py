@@ -67,7 +67,7 @@ if uploaded_files:
             layer_name = 'conv5_block3_out'  # ResNet50 last conv layer
             try:
                 cam = get_tumor_activation(model, img_array, layer_name)
-                superimposed = np.uint8(img * 255)  # Use original image without heatmap
+                superimposed = np.uint8(img * 255)  # Use original image without alteration
                 # Find max activation point for arrow
                 y, x = np.unravel_index(np.argmax(cam), cam.shape)
                 arrow_start = (int(x + 30), int(y - 30))  # Start outside, point inward
