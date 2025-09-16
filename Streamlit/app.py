@@ -28,10 +28,8 @@ def grad_cam(model, img_array, layer_name):
     grads = tape.gradient(loss, conv_outputs)
     conv_outputs = conv_outputs[0]
     grads = grads[0]
-    weights = tf.reduce_mean(grads, axis=(0, 1))
-    cam = np.zeros(conv_outputs.shape[0:2], dtype=np.float32)
-    for index, w in enumerate(weights):
-        cam += w * conv_outputs[:, :, index]
+    pooled_grads = tf.reduce_mean(grads, axis=(0, 1))
+    cam = tf.reduce_sum(tf.multiply(conv_outputs, pooled_grads), axis=-1).numpy()
     cam = np.maximum(cam, 0)
     cam_max = np.max(cam)
     cam = cam / (cam_max + 1e-8) if cam_max > 0 else cam
