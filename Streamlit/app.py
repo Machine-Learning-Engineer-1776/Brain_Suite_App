@@ -17,6 +17,23 @@ except Exception as e:
 
 CATEGORIES = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary']
 
+def get_tumor_activation(model, img_array, layer_name):
+    grad_model = tf.keras.models.Model(
+        [model.inputs], [model.get_layer(layer_name).output, model.output]
+    )
+    with tf.GradientTape() as tape:
+        conv_outputs, predictions = grad_model(img_array)
+        class_idx = tf.argmax(predictions[0], axis=-1).numpy().item()
+        loss = predictions[0][class_idx]
+    grads = tape.gradient(loss, conv_outputs)
+    conv_outputs = conv_outputs[0]
+    grads = grads[0]
+    weights = tf.reduce_mean(grads, axis=(0, 1))
+    cam = tf.reduce_sum(tf.multiply(conv_outputs, weights), axis=-1).numpy()
+    cam = np.maximum(cam, 0)
+    cam = cv2.resize(cam, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_LINEAR)
+    return cam
+
 uploaded_files = st.file_uploader("Upload MRI Images", type=["jpg", "npy"], accept_multiple_files=True)
 if uploaded_files:
     for uploaded_file in uploaded_files:
@@ -47,23 +64,15 @@ if uploaded_files:
         st.pyplot(fig)
         # Draw green arrow to predicted tumor area if not No Tumor
         if label != "No Tumor":
-            grad_model = tf.keras.models.Model(
-                [model.inputs], [model.get_layer('conv5_block3_out').output, model.output]
-            )
-            with tf.GradientTape() as tape:
-                conv_outputs, predictions = grad_model(img_array)
-                class_idx = tf.argmax(predictions[0], axis=-1).numpy().item()
-                loss = predictions[0][class_idx]
-            grads = tape.gradient(loss, conv_outputs)
-            conv_outputs = conv_outputs[0]
-            grads = grads[0]
-            weights = tf.reduce_mean(grads, axis=(0, 1))
-            cam = tf.reduce_sum(tf.multiply(conv_outputs, weights), axis=-1).numpy()
-            cam = np.maximum(cam, 0)
-            cam = cv2.resize(cam, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_LINEAR)
-            y, x = np.unravel_index(np.argmax(cam), cam.shape)
-            superimposed = np.uint8(img * 255)
-            arrow_start = (int(x + 30), int(y - 30))  # Start outside, point inward
-            arrow_end = (int(x), int(y))  # Point to max activation
-            cv2.arrowedLine(superimposed, arrow_start, arrow_end, (0, 255, 0), 2, tipLength=0.3)
-            st.image(superimposed, caption=f"{label} Indicated (Confidence: {max_prob:.2%})", use_column_width=True)
+            layer_name = 'conv5_block3_out'  # ResNet50 last conv layer
+            try:
+                cam = get_tumor_activation(model, img_array, layer_name)
+                superimposed = np.uint8(img * 255)  # Use original image without heatmap
+                # Find max activation point for arrow
+                y, x = np.unravel_index(np.argmax(cam), cam.shape)
+                arrow_start = (int(x + 30), int(y - 30))  # Start outside, point inward
+                arrow_end = (int(x), int(y))  # Point to max activation
+                cv2.arrowedLine(superimposed, arrow_start, arrow_end, (0, 255, 0), 2, tipLength=0.3)
+                st.image(superimposed, caption=f"{label} Indicated (Confidence: {max_prob:.2%})", use_column_width=True)
+            except Exception as e:
+                st.error(f"Grad-CAM failed: {str(e)}")
