@@ -45,11 +45,11 @@ if uploaded_files:
         ax.imshow(img, cmap='gray')
         ax.set_title(f"Prediction: {label}")
         st.pyplot(fig)
-        # Draw arrow at center of image
+        # Draw arrow pointing toward center
         superimposed = np.uint8(img * 255)
         height, width = img.shape[:2]
         center_x, center_y = width // 2, height // 2
-        arrow_start = (center_x, center_y)
-        arrow_end = (center_x + 30, center_y - 30)  # Arrow pointing upward-right
+        arrow_end = (center_x, center_y)
+        arrow_start = (center_x + 30, center_y - 30)  # Start outside, point inward
         cv2.arrowedLine(superimposed, arrow_start, arrow_end, (0, 255, 0), 2, tipLength=0.3)
         st.image(superimposed, caption=f"{label} Center Indicated (Confidence: {max_prob:.2%})", use_column_width=True)
