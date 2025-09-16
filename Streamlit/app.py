@@ -28,10 +28,13 @@ def grad_cam(model, img_array, layer_name):
     grads = tape.gradient(loss, conv_outputs)
     conv_outputs = conv_outputs[0]
     grads = grads[0]
-    pooled_grads = tf.reduce_mean(grads, axis=(0, 1))
-    cam = tf.reduce_sum(tf.multiply(conv_outputs, pooled_grads), axis=-1).numpy()
+    weights = tf.reduce_mean(grads, axis=(0, 1))
+    cam = np.zeros(conv_outputs.shape[0:2], dtype=np.float32)
+    for index, w in enumerate(weights):
+        cam += w * conv_outputs[:, :, index]
     cam = np.maximum(cam, 0)
-    cam = (cam - np.min(cam)) / (np.max(cam) - np.min(cam) + 1e-8)
+    cam_max = np.max(cam)
+    cam = cam / (cam_max + 1e-8) if cam_max > 0 else cam
     cam = cv2.resize(cam, (img_array.shape[2], img_array.shape[1]), interpolation=cv2.INTER_LINEAR)
     cam = np.clip(cam, 0, 1)
     return cam
