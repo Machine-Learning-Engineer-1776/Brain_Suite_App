@@ -6,6 +6,7 @@
 
 </div>
 
+The Brain Tumor Classifier is part of the Brain Suite.   http://44.246.164.107:8501/
 
 This project builds a deep learning model to classify brain MRI images as Tumor or No Tumor, deployed as a Flask web app for real-time predictions via a drag-and-drop interface. Using a ResNet50-based model and the Brain Tumor MRI Dataset from Kaggle, it showcases expertise in machine learning, computer vision, and web deployment.
 
