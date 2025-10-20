@@ -28,7 +28,7 @@ Suggested Screenshot: Radiology report table showing tumor probability and regio
 **1.	Access the App:**
 Visit the live Brain Suite web app at http://44.246.164.107/.
 
-<img width="1173" height="749" alt="{D2FBD554-0E36-4740-82A4-5F752D1205F7}" src="https://github.com/user-attachments/assets/201d391d-a908-4a42-8c60-d578c83dc99b" />
+<img width="587" height="357" alt="{D2FBD554-0E36-4740-82A4-5F752D1205F7}" src="https://github.com/user-attachments/assets/201d391d-a908-4a42-8c60-d578c83dc99b" />
 
 
 **2.	Generate Synthetic Images:**
