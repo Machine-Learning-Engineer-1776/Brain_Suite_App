@@ -13,7 +13,11 @@ Suggested Screenshot: Dropdown menu from the "Select a Test Image" section, show
 
 **•	Preloaded Test Images:** Includes four preloaded MRI images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for immediate classification, enabling users without personal scans to test the app.
 
-**Suggested Screenshot: Classification result for a preloaded image (e.g., Glioma.jpg with prediction and confidence score).**
+
+<img width="1177" height="321" alt="{B2CC4B40-4384-4B3E-9316-CC34D65B3EC6}" src="https://github.com/user-attachments/assets/146515cc-84bd-40af-9fb5-75dac838de03" />
+
+
+
 
 **•	Radiology Report:** Generates a detailed report for tumor classifications, including tumor probability, top three suspected tumor regions with coordinates and likelihoods, and region type (Core or Periphery).
 Suggested Screenshot: Radiology report table showing tumor probability and region details.
