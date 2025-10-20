@@ -61,6 +61,11 @@ Suggested Screenshot: Upload interface with a file selected or dropdown selectio
 <img width="1105" height="1045" alt="{BC5F30C2-8705-4BF9-B45D-46F4ED264C50}" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
 
 
+<div style="text-align: center;">
+  <img width="1105" height="1045" alt="{BC5F30C2-8705-4BF9-B45D-46F4ED264C50}" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
+</div>
+
+
 **Dataset**
 
 The app leverages the BraTS2017 dataset (https://www.med.upenn.edu/cbica/brats/) for training the classification model, containing T1-weighted MRI scans with tumor annotations (Glioma, Meningioma, Pituitary). Images are preprocessed to 224x224 pixels, RGB, and normalized to [0, 1]. The app includes four preloaded test images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for classification. Synthetic images are pre-generated and stored on the server for visualization purposes.
