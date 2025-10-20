@@ -29,10 +29,6 @@ Suggested Screenshot: Radiology report table showing tumor probability and regio
 Visit the live Brain Suite web app at http://44.246.164.107/.
 
 
-<img width="981" height="165" alt="{0E3244B5-5398-4668-8D1E-081DEE4BF222}" src="https://github.com/user-attachments/assets/1e63be43-3942-4298-817a-cebfb2a482a5" />
-
-
-
 
 **2.	Generate Synthetic Images:**
 Navigate to the "Synthetic Image Generator" section and click "Generate Synthetic Image" to view a pre-generated synthetic brain MRI. The app cycles between two sample images stored on the server.
