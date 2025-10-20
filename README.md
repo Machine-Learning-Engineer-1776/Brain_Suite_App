@@ -32,29 +32,42 @@ Visit the live Brain Suite web app at http://44.246.164.107/.
 
 **2.	Generate Synthetic Images:**
 Navigate to the "Synthetic Image Generator" section and click "Generate Synthetic Image" to view a pre-generated synthetic brain MRI. The app cycles between two sample images stored on the server.
-Note: Synthetic images are for visualization only and cannot be classified.
+
+
+**Note: Synthetic images are for visualization only and cannot be classified.**
+
 
 **3.	Classify an Image:**
+
 •	Select a Test Image: Choose a preloaded MRI from the dropdown menu (Glioma, Meningioma, Pituitary, No Tumor) in the "Select a Test Image" section. 
+
 •	Upload Your Own MRI: Use the "Upload Your Own MRI" section to upload a JPG or NPY image.
 Click "Classify Image" to process the selected or uploaded image.
 Suggested Screenshot: Upload interface with a file selected or dropdown selection.
 
 **4.	View Results:**
+
 •	If no tumor is detected, a "No Tumor Has Been Detected" message is displayed. 
+
 •	If a tumor is detected, the app shows: 
+
   •	The classified image with prediction and confidence score. 
+  
   •	A radiology report detailing tumor probability and suspected regions. 
+  
   •	A visualized image with highlighted tumor regions (red/blue circles).
+  
 
 
 **Suggested Screenshot: Combined view of classified image, radiology report, and tumor-highlighted image.**
 
 
 **Dataset**
+
 The app leverages the BraTS2017 dataset (https://www.med.upenn.edu/cbica/brats/) for training the classification model, containing T1-weighted MRI scans with tumor annotations (Glioma, Meningioma, Pituitary). Images are preprocessed to 224x224 pixels, RGB, and normalized to [0, 1]. The app includes four preloaded test images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for classification. Synthetic images are pre-generated and stored on the server for visualization purposes.
 
 **Model Performance**
+
 The classification model, trained on BraTS2017, achieves reliable detection and classification of brain tumors. It uses a pre-trained TensorFlow architecture to provide accurate predictions with detailed radiology reports. [Note: Specific performance metrics, e.g., accuracy, to be added if available.]
 
 **Limitations**
