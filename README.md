@@ -66,15 +66,17 @@ Suggested Screenshot: Upload interface with a file selected or dropdown selectio
 <img width="1105" height="1045" alt="{BC5F30C2-8705-4BF9-B45D-46F4ED264C50}" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
 
 
-
+------------------------------------------------------------------------------------------------
 **Dataset**
 
 The app leverages the BraTS2017 dataset (https://www.med.upenn.edu/cbica/brats/) for training the classification model, containing T1-weighted MRI scans with tumor annotations (Glioma, Meningioma, Pituitary). Images are preprocessed to 224x224 pixels, RGB, and normalized to [0, 1]. The app includes four preloaded test images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for classification. Synthetic images are pre-generated and stored on the server for visualization purposes.
 
+------------------------------------------------------------------------------------------------
 **Model Performance**
 
 The classification model, trained on BraTS2017, achieves reliable detection and classification of brain tumors. It uses a pre-trained TensorFlow architecture to provide accurate predictions with detailed radiology reports. [Note: Specific performance metrics, e.g., accuracy, to be added if available.]
 
+------------------------------------------------------------------------------------------------
 **Limitations**
 
   •	The classification model is optimized for brain MRI images in JPG or NPY format. Non-MRI or unsupported formats may yield unreliable results. 
@@ -83,6 +85,7 @@ The classification model, trained on BraTS2017, achieves reliable detection and 
   
   •	Confidence scores and radiology reports reflect AI predictions and are not a substitute for professional medical diagnosis. Further clinical evaluation (e.g., biopsy) is recommended for tumor confirmation.
 
+------------------------------------------------------------------------------------------------
 **Repository Structure**
 
   •	/data/: Dataset samples and preprocessed images. 
