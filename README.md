@@ -58,16 +58,25 @@ The app leverages the BraTS2017 dataset (https://www.med.upenn.edu/cbica/brats/)
 The classification model, trained on BraTS2017, achieves reliable detection and classification of brain tumors. It uses a pre-trained TensorFlow architecture to provide accurate predictions with detailed radiology reports. [Note: Specific performance metrics, e.g., accuracy, to be added if available.]
 
 **Limitations**
+
   •	The classification model is optimized for brain MRI images in JPG or NPY format. Non-MRI or unsupported formats may yield unreliable results. 
+  
   •	Synthetic images are for visualization only and not suitable for classification. 
+  
   •	Confidence scores and radiology reports reflect AI predictions and are not a substitute for professional medical diagnosis. Further clinical evaluation (e.g., biopsy) is recommended for tumor confirmation.
 
 **Repository Structure**
+
   •	/data/: Dataset samples and preprocessed images. 
+  
   •	/notebooks/: Jupyter notebooks for data wrangling and model training. 
+  
   •	/test-images/: Preloaded test images for classification. 
+  
   •	/synthetic_images/: Pre-generated synthetic MRI images. 
+  
   •	app.py: Main Streamlit application script. 
+  
   •	README.md: Project overview and usage instructions.
 
 
