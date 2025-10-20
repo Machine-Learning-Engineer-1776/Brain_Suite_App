@@ -21,20 +21,19 @@ Suggested Screenshot: Radiology report table showing tumor probability and regio
 **•	Tumor Localization Visualization:** Highlights suspected tumor regions on classified images with colored circles (red for high probability, blue for lower), aiding visual interpretation of tumor locations.
 
 
-**Suggested Screenshot: Tumor-highlighted image with red/blue circles indicating tumor regions.
-How to Use the Web App**
+<img width="469" height="481" alt="{1D0090DB-AB0A-4CC2-AA0B-E153A8F11AD2}" src="https://github.com/user-attachments/assets/c28293ef-c146-4f8d-a04f-ff7355b4a199" />
+
 
 
 **1.	Access the App:**
 Visit the live Brain Suite web app at http://44.246.164.107/.
 
-**Suggested Screenshot: App homepage showing the title and "How It Works" section.**
+<img width="1173" height="749" alt="{D2FBD554-0E36-4740-82A4-5F752D1205F7}" src="https://github.com/user-attachments/assets/201d391d-a908-4a42-8c60-d578c83dc99b" />
+
 
 **2.	Generate Synthetic Images:**
 Navigate to the "Synthetic Image Generator" section and click "Generate Synthetic Image" to view a pre-generated synthetic brain MRI. The app cycles between two sample images stored on the server.
-
-
-**Note: Synthetic images are for visualization only and cannot be classified.**
+**Note:** Synthetic images are for visualization only and cannot be classified.
 
 
 **3.	Classify an Image:**
@@ -59,7 +58,7 @@ Suggested Screenshot: Upload interface with a file selected or dropdown selectio
   
 
 
-**Suggested Screenshot: Combined view of classified image, radiology report, and tumor-highlighted image.**
+<img width="1105" height="1045" alt="{BC5F30C2-8705-4BF9-B45D-46F4ED264C50}" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
 
 
 **Dataset**
