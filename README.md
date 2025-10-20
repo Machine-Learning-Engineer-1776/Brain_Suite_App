@@ -29,7 +29,7 @@ Suggested Screenshot: Radiology report table showing tumor probability and regio
 
 
 
-**How to Use the Brain Suite Web App**
+**How to Use the Brain Suite Web App:**
 
 **1.	Access the App:**
 Visit the live Brain Suite web app at http://44.246.164.107/.
