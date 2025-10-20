@@ -1,6 +1,6 @@
 **<H1>Brain Suite: AI-Powered Brain Tumor Classifier and Synthetic MRI Generator:</H1>**
 
-The Brain Suite is a live web application hosted at http://44.246.164.107/, designed for medical research and diagnostics. It leverages deep learning to classify brain MRI images and generate synthetic MRI scans. Built with Streamlit and TensorFlow, the app provides a user-friendly interface for researchers and clinicians to analyze brain MRIs for tumors (Glioma, Meningioma, Pituitary, or No Tumor) and visualize high-fidelity synthetic brain images. Key features include a pre-trained classification model, preloaded test images, detailed radiology reports, tumor localization visualization, and synthetic image generation for research and training purposes.
+The **Brain Suite** is a live web application hosted at http://44.246.164.107/, designed for medical research and diagnostics. It leverages deep learning to classify brain MRI images and generate synthetic MRI scans. Built with Streamlit and TensorFlow, the app provides a user-friendly interface for researchers and clinicians to analyze brain MRIs for tumors (Glioma, Meningioma, Pituitary, or No Tumor) and visualize high-fidelity synthetic brain images. Key features include a pre-trained classification model, preloaded test images, detailed radiology reports, tumor localization visualization, and synthetic image generation for research and training purposes.
 
 
 **Features:**
