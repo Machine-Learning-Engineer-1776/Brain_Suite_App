@@ -21,7 +21,7 @@ Suggested Screenshot: Radiology report table showing tumor probability and regio
 **•	Tumor Localization Visualization:** Highlights suspected tumor regions on classified images with colored circles (red for high probability, blue for lower), aiding visual interpretation of tumor locations.
 
 
-<img width="469" height="481" alt="{1D0090DB-AB0A-4CC2-AA0B-E153A8F11AD2}" src="https://github.com/user-attachments/assets/c28293ef-c146-4f8d-a04f-ff7355b4a199" />
+<img width="235" height="241" alt="{1D0090DB-AB0A-4CC2-AA0B-E153A8F11AD2}" src="https://github.com/user-attachments/assets/c28293ef-c146-4f8d-a04f-ff7355b4a199" />
 
 
 
