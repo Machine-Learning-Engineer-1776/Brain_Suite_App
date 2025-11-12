@@ -15,6 +15,8 @@ The **Brain Suite** is a live web application hosted at http://44.246.164.107/, 
 
 **•	Synthetic Image Generator:** Produces high-fidelity synthetic brain MRI images for visualization, research, and training using advanced generative AI techniques. These images are not classified for tumors but serve as realistic simulations.
 Suggested Screenshot: Display of a generated synthetic MRI image from the "Synthetic Image Generator" section (e.g., a centered 224x224 PNG from the app’s synthetic image output).
+More Information Regarding our Stable Diffusion Model can be found at:  https://github.com/Machine-Learning-Engineer-1776/Synthetic_Image_Generation_Diffusion_Model/blob/main/README.md
+
 
 **•	Tumor Classification:** Analyzes user-uploaded or preloaded MRI images using a pre-trained deep learning model, classifying them into Glioma, Meningioma, Pituitary, or No Tumor with confidence scores.
 Suggested Screenshot: Dropdown menu from the "Select a Test Image" section, showing options (Glioma, Meningioma, Pituitary, No Tumor).
