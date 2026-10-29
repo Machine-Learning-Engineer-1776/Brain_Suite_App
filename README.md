@@ -1,121 +1,92 @@
-**<H1>Brain Suite: AI-Powered Brain Tumor Classifier and Synthetic MRI Generator:</H1>**
+# Brain Suite: Brain MRI Tumor Classifier + Synthetic MRI Viewer
 
-<div>
-
-<div align="center">
-  
-<img width="261" height="173" alt="{A7B166A9-A076-4650-BB05-73B1DDDE4C99}" src="https://github.com/user-attachments/assets/37318e63-48f5-450b-8cd5-b73e2651c075" />
-  
-</div>
-
-The **Brain Suite** is a live web application hosted at http://44.246.164.107/, designed for medical research and diagnostics. It leverages deep learning to classify brain MRI images and generate synthetic MRI scans. Built with Streamlit and TensorFlow, the app provides a user-friendly interface for researchers and clinicians to analyze brain MRIs for tumors (Glioma, Meningioma, Pituitary, or No Tumor) and visualize high-fidelity synthetic brain images. Key features include a pre-trained classification model, preloaded test images, detailed radiology reports, tumor localization visualization, and synthetic image generation for research and training purposes.
-
-
-**Features:**
-
-**•	Synthetic Image Generator:** Produces high-fidelity synthetic brain MRI images for visualization, research, and training using advanced generative AI techniques. These images are not classified for tumors but serve as realistic simulations.
-Suggested Screenshot: Display of a generated synthetic MRI image from the "Synthetic Image Generator" section (e.g., a centered 224x224 PNG from the app’s synthetic image output).
-
-
-More Information Regarding our **Stable Diffusion Model** can be found at:  https://github.com/Machine-Learning-Engineer-1776/Synthetic_Image_Generation_Diffusion_Model/tree/main
-
-
-
-**•	Tumor Classification:** Analyzes user-uploaded or preloaded MRI images using a pre-trained deep learning model, classifying them into Glioma, Meningioma, Pituitary, or No Tumor with confidence scores.
-Suggested Screenshot: Dropdown menu from the "Select a Test Image" section, showing options (Glioma, Meningioma, Pituitary, No Tumor).
-
-**•	Preloaded Test Images:** Includes four preloaded MRI images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for immediate classification, enabling users without personal scans to test the app.
-
-
-<img width="1177" height="321" alt="{B2CC4B40-4384-4B3E-9316-CC34D65B3EC6}" src="https://github.com/user-attachments/assets/146515cc-84bd-40af-9fb5-75dac838de03" />
-
-
-
-
-**•	Radiology Report:** Generates a detailed report for tumor classifications, including tumor probability, top three suspected tumor regions with coordinates and likelihoods, and region type (Core or Periphery).
-Suggested Screenshot: Radiology report table showing tumor probability and region details.
-
-**•	Tumor Localization Visualization:** Highlights suspected tumor regions on classified images with colored circles (red for high probability, blue for lower), aiding visual interpretation of tumor locations.
-
-<div>
+A Streamlit web app that runs a deep learning classifier on brain MRI images and shows synthetic MRI scans produced by a separate diffusion-model project. Built as a portfolio demo, **not a medical device**.
 
 <div align="center">
-  
-<img width="235" height="241" alt="{1D0090DB-AB0A-4CC2-AA0B-E153A8F11AD2}" src="https://github.com/user-attachments/assets/c28293ef-c146-4f8d-a04f-ff7355b4a199" />
-
+<img width="261" height="173" alt="Brain Suite app" src="https://github.com/user-attachments/assets/37318e63-48f5-450b-8cd5-b73e2651c075" />
 </div>
 
+**Live app:** http://44.246.164.107/ (may be offline when the server isn't running)  
+**Synthetic MRI model:** [Synthetic_Image_Generation_Diffusion_Model](https://github.com/Machine-Learning-Engineer-1776/Synthetic_Image_Generation_Diffusion_Model)
 
-**How to Use the Brain Suite Web App:**
+---
 
-**1.	Access the App:**
-Visit the live Brain Suite web app at http://44.246.164.107/.
+## What it does
 
+- **Tumor classification:** upload a JPG/NPY brain MRI (or pick a test image) and the app runs a TensorFlow/Keras model on a 224×224 RGB version of it.
+- **"Radiology report" and highlighted regions:** the app marks the 3 brightest areas of the image (Gaussian-blurred pixel intensity) and lists their coordinates. This is a **simple intensity heuristic**, not model-based tumor localization or segmentation.
+- **Synthetic MRI viewer:** displays pre-generated synthetic brain MRI images from the diffusion-model project. Images are not generated live in the app.
 
+<img width="1177" height="321" alt="Test image selection" src="https://github.com/user-attachments/assets/146515cc-84bd-40af-9fb5-75dac838de03" />
 
-**2.	Generate Synthetic Images:**
-Navigate to the "Synthetic Image Generator" section and click "Generate Synthetic Image" to view a pre-generated synthetic brain MRI. The app cycles between two sample images stored on the server.
-**Note:** Synthetic images are for visualization only and cannot be classified.
+<div align="center">
+<img width="235" height="241" alt="Highlighted regions" src="https://github.com/user-attachments/assets/c28293ef-c146-4f8d-a04f-ff7355b4a199" />
+</div>
 
+<img width="1105" height="1045" alt="App results view" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
 
-**3.	Classify an Image:**
+---
 
-•	Select a Test Image: Choose a preloaded MRI from the dropdown menu (Glioma, Meningioma, Pituitary, No Tumor) in the "Select a Test Image" section. 
+## Dataset
 
-•	Upload Your Own MRI: Use the "Upload Your Own MRI" section to upload a JPG or NPY image.
-Click "Classify Image" to process the selected or uploaded image.
-Suggested Screenshot: Upload interface with a file selected or dropdown selection.
+[Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset) on Kaggle (`masoudnickparvar/brain-tumor-mri-dataset`), loaded in the notebook with `kagglehub`:
+- 5,712 training images and 1,311 test images
+- 4 classes: glioma, meningioma, pituitary, no tumor
 
-**4.	View Results:**
+Sample test images from this dataset are in `Test Images/`.
 
-•	If no tumor is detected, a "No Tumor Has Been Detected" message is displayed. 
+---
 
-•	If a tumor is detected, the app shows: 
+## Model and results
 
-  •	The classified image with prediction and confidence score. 
-  
-  •	A radiology report detailing tumor probability and suspected regions. 
-  
-  •	A visualized image with highlighted tumor regions (red/blue circles).
-  
+All numbers come from `Models/Brain_Tumor_Classifier.ipynb`:
 
+| Model | Task | Result |
+|-------|------|--------|
+| Custom CNN (baseline) | 4-class | Best validation accuracy 52.6% (10 epochs); dropped in favour of transfer learning |
+| **ResNet50 (ImageNet weights) + dense head** | **Binary: tumor vs. no tumor** | **83.9% test accuracy** on 1,311 test images |
 
-<img width="1105" height="1045" alt="{BC5F30C2-8705-4BF9-B45D-46F4ED264C50}" src="https://github.com/user-attachments/assets/d60de2a4-839f-4647-a360-f7c68e4963d7" />
+Binary test results (ResNet50):
 
+| Class | Precision | Recall | F1 | Support |
+|-------|-----------|--------|----|---------|
+| No Tumor | 0.72 | 0.80 | 0.75 | 405 |
+| Tumor | 0.90 | 0.86 | 0.88 | 906 |
 
-------------------------------------------------------------------------------------------------
-**Dataset**
+### Known limitations / next steps
+- The notebook's final model is **binary** (single sigmoid output), while `app.py` applies softmax and maps the output to 4 labels (Glioma / Meningioma / No Tumor / Pituitary). These need to be aligned: either train and evaluate a 4-class model, or show tumor / no tumor in the app.
+- The highlighted regions are brightness-based, not learned. Grad-CAM or a segmentation model would be the next step.
+- For research and demo use only; not a substitute for professional medical diagnosis.
 
-The app leverages the BraTS2017 dataset (https://www.med.upenn.edu/cbica/brats/) for training the classification model, containing T1-weighted MRI scans with tumor annotations (Glioma, Meningioma, Pituitary). Images are preprocessed to 224x224 pixels, RGB, and normalized to [0, 1]. The app includes four preloaded test images (Glioma.jpg, Meningioma.jpg, Pituitary.jpg, Tumor FREEDOM.jpg) for classification. Synthetic images are pre-generated and stored on the server for visualization purposes.
+---
 
-------------------------------------------------------------------------------------------------
-**Model Performance**
+## How to run locally
 
-The classification model, trained on BraTS2017, achieves reliable detection and classification of brain tumors. It uses a pre-trained TensorFlow architecture to provide accurate predictions with detailed radiology reports. [Note: Specific performance metrics, e.g., accuracy, to be added if available.]
+```bash
+pip install -r requirements.txt
+```
 
-------------------------------------------------------------------------------------------------
-**Limitations**
+1. Run `Models/Brain_Tumor_Classifier.ipynb` (Colab) to train the ResNet50 model; it saves `model.h5`. The trained model file is **not** included in this repo.
+2. `Streamlit/app.py` loads the model from `../Models/model.h5` and synthetic images from a `synthetic_images/` folder in the working directory (not included here; sample synthetic images are in the [diffusion repo](https://github.com/Machine-Learning-Engineer-1776/Synthetic_Image_Generation_Diffusion_Model)).
+3. From the `Streamlit/` folder: `streamlit run app.py`
 
-  •	The classification model is optimized for brain MRI images in JPG or NPY format. Non-MRI or unsupported formats may yield unreliable results. 
-  
-  •	Synthetic images are for visualization only and not suitable for classification. 
-  
-  •	Confidence scores and radiology reports reflect AI predictions and are not a substitute for professional medical diagnosis. Further clinical evaluation (e.g., biopsy) is recommended for tumor confirmation.
+`Dockerfile.txt` contains the container setup used for deployment (rename to `Dockerfile` to build).
 
-------------------------------------------------------------------------------------------------
-**Repository Structure**
+---
 
-  •	/data/: Dataset samples and preprocessed images. 
-  
-  •	/notebooks/: Jupyter notebooks for data wrangling and model training. 
-  
-  •	/test-images/: Preloaded test images for classification. 
-  
-  •	/synthetic_images/: Pre-generated synthetic MRI images. 
-  
-  •	app.py: Main Streamlit application script. 
-  
-  •	README.md: Project overview and usage instructions.
+## Tech stack
+TensorFlow / Keras (ResNet50 transfer learning), Streamlit, OpenCV, NumPy, Pillow, Matplotlib, kagglehub, Google Colab, Docker
 
+---
 
-
+## Project structure
+```
+Architecture/Design_Deployment_Solution_Architecture.ipynb   # deployment design notes
+Models/Brain_Tumor_Classifier.ipynb   # data loading, CNN baseline, ResNet50 training + evaluation
+Models/app.py                         # copy of the Streamlit app
+Streamlit/app.py                      # Streamlit app
+Streamlit/requirements.txt
+Test Images/Images For Testing/       # sample MRIs: glioma, meningioma, pituitary, no tumor
+Dockerfile.txt, Dockerignore.txt
+requirements.txt
+```
