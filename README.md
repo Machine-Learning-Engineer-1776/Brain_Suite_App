@@ -6,7 +6,7 @@ A Streamlit web app that runs a deep learning classifier on brain MRI images and
 <img width="261" height="173" alt="Brain Suite app" src="https://github.com/user-attachments/assets/37318e63-48f5-450b-8cd5-b73e2651c075" />
 </div>
 
-**Live app:** http://44.246.164.107/ (may be offline when the server isn't running)  
+**Live app:** http://44.246.164.107:8501/ (demo server; may be offline at times)  
 **Synthetic MRI model:** [Synthetic_Image_Generation_Diffusion_Model](https://github.com/Machine-Learning-Engineer-1776/Synthetic_Image_Generation_Diffusion_Model)
 
 ---
@@ -46,6 +46,8 @@ All numbers come from `Models/Brain_Tumor_Classifier.ipynb`:
 | Custom CNN (baseline) | 4-class | Best validation accuracy 52.6% (10 epochs); dropped in favour of transfer learning |
 | **ResNet50 (ImageNet weights) + dense head** | **Binary: tumor vs. no tumor** | **83.9% test accuracy** on 1,311 test images |
 
+The 1,311 images are the dataset's `Testing` folder. The notebook also passes that folder as `validation_data` during training, so 83.9% was not measured on a fully unseen set and is likely a little optimistic.
+
 Binary test results (ResNet50):
 
 | Class | Precision | Recall | F1 | Support |
@@ -55,8 +57,26 @@ Binary test results (ResNet50):
 
 ### Known limitations / next steps
 - The notebook's final model is **binary** (single sigmoid output), while `app.py` applies softmax and maps the output to 4 labels (Glioma / Meningioma / No Tumor / Pituitary). These need to be aligned: either train and evaluate a 4-class model, or show tumor / no tumor in the app.
+- `Streamlit/app.py` and `Models/app.py` are identical copies; one should be removed.
 - The highlighted regions are brightness-based, not learned. Grad-CAM or a segmentation model would be the next step.
 - For research and demo use only; not a substitute for professional medical diagnosis.
+
+---
+
+## Architecture
+
+```mermaid
+graph LR
+    A[Kaggle Brain Tumor MRI<br/>5,712 train / 1,311 test] --> B[Colab notebook<br/>ResNet50 transfer learning, binary]
+    B --> C[model.h5<br/>not in repo]
+    C --> D[Streamlit app<br/>upload or test image, 224x224]
+    D --> E[Prediction]
+    D --> F[Brightness heatmap<br/>top 3 bright regions]
+    G[Diffusion repo<br/>pre-generated synthetic MRIs] --> H[Synthetic MRI viewer]
+    D --- H
+```
+
+The live demo runs Streamlit on port 8501 on a single cloud server. The synthetic images are made offline in the diffusion repo; the app only displays them.
 
 ---
 
@@ -90,3 +110,7 @@ Test Images/Images For Testing/       # sample MRIs: glioma, meningioma, pituita
 Dockerfile.txt, Dockerignore.txt
 requirements.txt
 ```
+
+---
+
+Built by Ron Lance, [Alpha Peak Technologies](https://alphapeaktech.com) · [LinkedIn](https://www.linkedin.com/in/ron-lance-49aa2a8/)
